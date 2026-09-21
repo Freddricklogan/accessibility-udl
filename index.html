@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Accessibility &amp; UDL Toolkit for Educators</title>
 <meta name="description" content="An executive, graduate-level interactive resource on accessibility and Universal Design for Learning: WCAG 2.1/2.2 & the POUR principles, an accessibility self-audit scorer, CAST UDL 3.0, accessible documents and video. Authored by Freddrick Logan.">
 <meta name="author" content="Freddrick Logan">
@@ -12,224 +13,14 @@
 <meta property="og:description" content="Designing learning that works for every student — by design, not retrofit. WCAG & POUR, a self-audit scorer, CAST UDL, accessible documents & video.">
 <meta property="og:url" content="https://freddricklogan.github.io/accessibility-udl/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213d'/%3E%3Ccircle cx='16' cy='7.5' r='2.6' fill='%2394773d'/%3E%3Cpath d='M8 11.5h16' stroke='%2394773d' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M16 11.5v7' stroke='%2394773d' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M16 18.5l-4 7M16 18.5l4 7' stroke='%2394773d' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
-<style>
-  /* ==== EXECUTIVE DESIGN SYSTEM — light, editorial, WCAG-aware ==== */
-  :root{
-    --paper:#ffffff;--paper2:#f5f7f9;--paper3:#eef1f5;
-    --navy:#14213d;--navy2:#1c2f4f;
-    --panel:#ffffff;--panel2:#ffffff;--panel3:#f5f7f9;
-    --line:#e3e7ec;--line2:#d1d8e2;
-    --accent:#1e3a5f;--accent2:#2a5486;--accent3:#243f6a;
-    --ink:#14213d;--body:#33404f;--muted:#4c596b;--dim:#5f6c7e;
-    --gold:#94773d;--gold-soft:#f3eddf;
-    --good:#15803d;--warn:#b45309;--bad:#b3261e;
-    --serif:Georgia,'Iowan Old Style','Palatino Linotype','Times New Roman',serif;
-    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,system-ui,sans-serif;
-    --r:12px;--maxw:1060px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--body);line-height:1.7;background:var(--paper);
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{color:var(--accent2);text-decoration:underline}
-  a:focus-visible,button:focus-visible,.tab:focus-visible,.opt:focus-visible,.ck:focus-visible,input:focus-visible{
-    outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);font-weight:700;letter-spacing:-.01em}
-  h2{font-size:1.75rem;line-height:1.2;margin-bottom:8px}
-  h3{font-size:1.18rem;color:var(--navy);margin-bottom:8px}
-  p{color:var(--body)}
-  .lead{color:var(--muted)}
-  em{color:inherit}
-  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;color:var(--gold)}
 
-  /* NAV */
-  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);
-    background:rgba(255,255,255,.92);border-bottom:1px solid var(--line)}
-  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:14px}
-  .logo{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--ink);white-space:nowrap}
-  .logo svg{width:30px;height:30px}
-  .navlinks{display:flex;gap:22px;font-size:.85rem;overflow-x:auto}
-  .navlinks a{color:var(--muted);font-weight:600;white-space:nowrap}
-  .navlinks a:hover{color:var(--accent);text-decoration:none}
-  @media(max-width:860px){.navlinks{display:none}}
-
-  /* HERO */
-  header.hero{padding:80px 0 56px;position:relative}
-  .hero .eyebrow{margin-bottom:18px}
-  .hero h1{font-family:var(--serif);font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.1;letter-spacing:-.02em;
-    font-weight:700;color:var(--ink);margin-bottom:22px}
-  .hero p{font-size:1.14rem;color:var(--muted);max-width:660px}
-  .hero .cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{padding:12px 22px;border-radius:8px;font-weight:600;font-size:.92rem;cursor:pointer;
-    border:1px solid var(--line2);background:#fff;color:var(--ink);transition:.15s;font-family:var(--sans)}
-  .btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
-  .btn.primary:hover{background:var(--navy2)}
-  .btn:hover{border-color:var(--accent);color:var(--accent)}
-  .btn.primary:hover{color:#fff}
-  .statrow{display:flex;gap:40px;margin-top:48px;flex-wrap:wrap}
-  .statrow .s .n{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--navy)}
-  .statrow .s .l{font-size:.78rem;color:var(--dim);text-transform:uppercase;letter-spacing:.09em;margin-top:2px}
-
-  /* EXECUTIVE SUMMARY / TL;DR */
-  .exec-summary{background:var(--paper2);border:1px solid var(--line2);border-left:4px solid var(--navy);
-    border-radius:12px;padding:26px 28px;margin:6px 0 0}
-  .exec-summary .tldr{font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;
-    font-weight:700;color:var(--gold);margin-bottom:8px}
-  .exec-summary h2{font-size:1.2rem;margin-bottom:12px}
-  .exec-summary ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
-  .exec-summary li{padding-left:22px;position:relative;color:var(--muted);font-size:.96rem}
-  .exec-summary li::before{content:'';position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;
-    background:var(--gold)}
-  .exec-summary li b{color:var(--ink);font-weight:700}
-
-  section{padding:60px 0;border-top:1px solid var(--line)}
-  .sec-head{margin-bottom:34px;max-width:720px}
-  .sec-head .eyebrow{display:block;margin-bottom:12px}
-
-  .grid{display:grid;gap:20px}
-  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-  @media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;
-    box-shadow:0 1px 2px rgba(20,33,61,.04)}
-  .card.hoverable{transition:.18s}.card.hoverable:hover{border-color:var(--line2);transform:translateY(-2px);
-    box-shadow:0 14px 34px -20px rgba(20,33,61,.35)}
-  .card .tag{display:inline-block;font-family:var(--sans);font-size:.68rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:.09em;color:var(--gold);background:var(--gold-soft);padding:3px 10px;border-radius:4px;margin-bottom:12px}
-  .card ul{margin:10px 0 0 0;padding-left:18px;color:var(--muted);font-size:.92rem}
-  .card ul li{margin-bottom:6px}
-  .kv{font-size:.92rem;color:var(--muted);margin-top:4px}.kv b{color:var(--ink);font-weight:700}
-
-  /* TABS */
-  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-  .tab{padding:10px 16px;border-radius:8px;border:1px solid var(--line2);background:#fff;color:var(--muted);
-    font-weight:600;font-size:.88rem;cursor:pointer;transition:.15s;font-family:var(--sans)}
-  .tab:hover{color:var(--accent);border-color:var(--accent)}
-  .tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
-  .panel{display:none;animation:fade .3s ease}
-  .panel.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .panel-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
-  @media(max-width:860px){.panel-grid{grid-template-columns:1fr}}
-  .facts{list-style:none;padding:0}
-  .facts li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}
-  .facts li span:first-child{color:var(--dim);min-width:130px;font-weight:600}
-  .facts li span:last-child{color:var(--ink)}
-
-  /* SELECTOR widget */
-  .selector{background:var(--paper2);border:1px solid var(--line2);border-radius:14px;padding:28px}
-  .q{margin-bottom:20px}
-  .q p{font-weight:600;color:var(--ink);margin-bottom:10px}
-  .opts{display:flex;gap:8px;flex-wrap:wrap}
-  .opt{padding:9px 14px;border-radius:8px;border:1px solid var(--line2);background:#fff;
-    color:var(--muted);cursor:pointer;font-size:.88rem;transition:.15s;font-family:var(--sans)}
-  .opt:hover{border-color:var(--accent);color:var(--accent)}
-  .opt.sel{background:var(--navy);border-color:var(--navy);color:#fff}
-  .result{margin-top:20px;padding:20px;border-radius:10px;background:#fff;border:1px solid var(--line2);border-left:4px solid var(--gold);display:none}
-  .result.show{display:block;animation:fade .3s}
-  .result .big{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:4px}
-
-  /* STEPPER */
-  .steps{counter-reset:s;display:grid;gap:14px}
-  .step{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);
-    border-radius:12px;padding:18px 20px;box-shadow:0 1px 2px rgba(20,33,61,.04)}
-  .step .num{counter-increment:s;flex:0 0 40px;height:40px;width:40px;border-radius:9px;display:grid;place-items:center;
-    background:var(--navy);color:#fff;font-family:var(--serif);font-weight:700}
-  .step .num::before{content:counter(s,decimal-leading-zero)}
-  .step h4{font-size:1.02rem;margin-bottom:3px}
-  .step p{font-size:.92rem;color:var(--muted)}
-
-  /* TABLE */
-  table{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:8px}
-  th{text-align:left;font-family:var(--sans);color:var(--navy);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
-    padding:12px 13px;border-bottom:2px solid var(--line2)}
-  td{padding:12px 13px;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top}
-  td b{color:var(--ink);font-weight:700}
-  tbody tr:hover{background:var(--paper2)}
-  .tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line);background:#fff}
-
-  /* LADDER / coder */
-  .coder{background:var(--paper2);border:1px solid var(--line2);border-radius:14px;padding:26px}
-  .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:22px 0 8px;position:relative}
-  @media(max-width:860px){.ladder{grid-template-columns:1fr;gap:10px}}
-  .rung{text-align:center;padding:15px 11px;border:1px solid var(--line);background:#fff;position:relative}
-  .rung:first-child{border-radius:10px 0 0 10px}.rung:last-child{border-radius:0 10px 10px 0}
-  @media(max-width:860px){.rung{border-radius:10px!important}}
-  .rung.on{background:var(--paper3);border-color:var(--navy)}
-  .rung .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);margin-bottom:6px;font-weight:600}
-  .rung .val{font-size:.9rem;color:var(--ink);font-weight:600;min-height:2.6em}
-  .quote{font-family:var(--serif);font-style:italic;font-size:1.08rem;color:var(--ink);border-left:3px solid var(--gold);
-    padding:6px 18px;margin-bottom:10px;background:transparent}
-
-  /* CHECKLIST scorer */
-  .checklist{display:grid;gap:10px}
-  .ck{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:10px;
-    cursor:pointer;transition:.15s;background:#fff}
-  .ck:hover{border-color:var(--accent)}
-  .ck.on{background:#f0f6f2;border-color:var(--good)}
-  .ck .box{flex:0 0 20px;height:20px;width:20px;border-radius:5px;border:2px solid var(--dim);display:grid;place-items:center;margin-top:2px;background:#fff}
-  .ck.on .box{background:var(--good);border-color:var(--good)}
-  .ck.on .box::after{content:'✓';color:#fff;font-weight:900;font-size:.75rem}
-  .ck .t b{display:block;color:var(--ink);font-size:.94rem;font-weight:700}
-  .ck .t span{font-size:.86rem;color:var(--muted)}
-  .score{margin-top:22px;padding:22px;border-radius:12px;text-align:center;background:var(--paper2);border:1px solid var(--line2)}
-  .score .meter{height:12px;border-radius:8px;background:var(--paper3);overflow:hidden;margin:14px 0}
-  .score .fill{height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--navy),var(--good));transition:width .4s}
-  .score .verdict{font-family:var(--serif);font-weight:700;font-size:1.15rem}
-
-  .callout{border-left:3px solid var(--gold);background:var(--paper2);border-radius:0 10px 10px 0;padding:16px 20px;margin:18px 0;font-size:.96rem;color:var(--muted)}
-  .callout b{color:var(--ink)}
-
-  .scholars{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .chip{font-size:.82rem;padding:6px 12px;border-radius:6px;border:1px solid var(--line2);color:var(--muted);background:#fff}
-
-  footer{border-top:1px solid var(--line);padding:44px 0 56px;margin-top:20px;color:var(--dim);font-size:.9rem;background:var(--paper2)}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start}
-  footer a{color:var(--accent)}
-  .copyright{width:100%;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);font-size:.82rem}
-  .backhub{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);margin-bottom:10px}
-
-  /* ===== Accessibility-specific additions (this page must itself be exemplary) ===== */
-  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
-  .skip{position:absolute;left:-999px;top:0;z-index:100;background:var(--navy);color:#fff;
-    padding:10px 16px;border-radius:0 0 10px 0;font-weight:700}
-  .skip:focus{left:0}
-  /* Contrast-checker form controls — visible borders & labels on light paper */
-  .field-label{font-weight:600;color:var(--ink);display:block;margin-bottom:8px}
-  .hex-input{flex:1;min-width:120px;padding:10px 12px;border-radius:8px;border:1px solid var(--line2);
-    background:#fff;color:var(--ink);font-size:.95rem;font-family:monospace}
-  .hex-input:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-  .color-input{width:44px;height:38px;border:1px solid var(--line2);border-radius:8px;background:#fff;cursor:pointer;padding:2px}
-  .swatch{margin-top:6px;border-radius:12px;border:1px solid var(--line2);padding:22px 18px}
-  .dd th:first-child{width:50%}
-  .dd .do{color:var(--good)}.dd .dont{color:var(--bad)}
-  .dd td .mk{font-weight:800;margin-right:6px}
-  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-  /* ==== Executive memorandum + collapsible sections ==== */
-  .memo-head{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--line2);padding-bottom:10px;margin-bottom:12px}
-  .memo-meta{display:grid;gap:5px;margin-bottom:16px}
-  .memo-meta>div{display:flex;gap:10px;font-size:.92rem;color:var(--muted)}
-  .memo-meta span{flex:0 0 auto;min-width:48px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:.7rem;color:var(--gold);padding-top:3px}
-  .expand-bar{max-width:var(--maxw);margin:0 auto;padding:22px 24px 0;display:flex;justify-content:flex-end}
-  .expand-bar button{font-family:var(--sans);font-size:.8rem;font-weight:600;color:var(--accent);background:#fff;border:1px solid var(--line2);border-radius:7px;padding:8px 14px;cursor:pointer}
-  .expand-bar button:hover{border-color:var(--accent)}
-  .expand-bar button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .sec-head.sect-toggle{cursor:pointer;position:relative;padding-right:40px}
-  .sec-head.sect-toggle::after{content:'';position:absolute;right:8px;top:10px;width:12px;height:12px;border-right:2.5px solid var(--navy);border-bottom:2.5px solid var(--navy);transform:rotate(45deg);transition:transform .2s}
-  section.collapsed .sec-head.sect-toggle::after{transform:rotate(-45deg)}
-  .sec-head.sect-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
-  section.collapsed .sect-body{display:none}
-  .sect-body{animation:fade .3s ease}
-  /* Centered footer */
-  footer .wrap{flex-direction:column;align-items:center;text-align:center;gap:6px;justify-content:center}
-  .foot-name{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:1.08rem}
-  .foot-title{color:var(--muted);font-size:.92rem;max-width:640px}
-  .foot-links{margin-top:6px;font-size:.9rem}
-  .foot-links a{color:var(--accent);white-space:nowrap}
-  footer .copyright{width:100%;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:.82rem;text-align:center}
-</style>
+<link rel="canonical" href="https://freddricklogan.github.io/accessibility-udl/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap">
+<link rel="stylesheet" href="src/exec-shell.css">
+<link rel="stylesheet" href="src/lr-kit.css">
+<link rel="stylesheet" href="src/page.css">
 </head>
 <body>
 
@@ -259,7 +50,7 @@
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <a class="backhub" href="../resources/">← Educational Leadership &amp; Research Resources</a>
+  <a class="backhub" href="https://freddricklogan.github.io/resources/">← Educational Leadership &amp; Research Resources</a>
   <span class="eyebrow">Accessibility &amp; Universal Design for Learning</span>
   <h1>Learning that works<br>for every student, by design.</h1>
   <p class="lead">A practical, standards-grounded toolkit for educators and instructional leaders — the legal and ethical case for access, the WCAG POUR principles, a live accessibility self-audit, and the CAST UDL framework for designing courses that reach the full range of learners from the start, not through last-minute retrofit.</p>
@@ -308,7 +99,7 @@
     <div class="card hoverable"><span class="tag">Section 508</span><h3>Rehabilitation Act, as amended</h3>
       <p class="kv">Requires federal agencies' electronic and information technology to be accessible; its 2017 refresh formally adopts WCAG 2.0 Level AA as the technical standard, widely used as a procurement benchmark.</p></div>
   </div>
-  <div class="grid g2" style="margin-top:18px">
+  <div class="grid g2 lr-s1">
     <div class="card"><h3>Accessibility vs. accommodation</h3>
       <p class="kv"><b>Accessibility</b> is designing the environment so it works for the widest range of people from the outset — proactive and for everyone. An <b>accommodation</b> is an individual, after-the-fact adjustment (extended time, a captioner, an alternate format) for a specific student, usually arranged through a disability services office. Robust accessibility reduces — but never fully eliminates — the need for accommodations.</p></div>
     <div class="card"><h3>The curb-cut effect</h3>
@@ -334,7 +125,7 @@
       <p class="kv">Content must be interpretable by a wide range of user agents.</p>
       <ul><li>Valid, well-formed markup</li><li>Correct name, role, value</li><li>Screen-reader compatible</li><li>Status messages announced</li></ul></div>
   </div>
-  <div class="grid g3" style="margin-top:18px">
+  <div class="grid g3 lr-s1">
     <div class="card"><span class="tag">Level A</span><h3>Minimum</h3><p class="kv">The most basic barriers removed. Necessary but rarely sufficient on its own.</p></div>
     <div class="card"><span class="tag">Level AA</span><h3>The common target</h3><p class="kv">The standard most laws, institutions, and procurement policies require (e.g. 4.5:1 text contrast, captions, resize/reflow). Aim here.</p></div>
     <div class="card"><span class="tag">Level AAA</span><h3>Enhanced</h3><p class="kv">The highest bar (e.g. 7:1 contrast, sign language). Not required for whole sites, but valuable where feasible.</p></div>
@@ -347,7 +138,7 @@
   <div class="sec-head"><span class="eyebrow">The standard in detail</span><h2>WCAG success criteria by principle</h2>
     <p class="lead">Under each POUR principle sit <b>guidelines</b>, and under those the testable <b>success criteria</b> — each numbered and assigned a conformance level (A, AA, AAA). A representative selection is shown below in plain language; WCAG 2.2 defines 87 in total.</p></div>
 
-  <h3 style="margin-bottom:10px">Perceivable</h3>
+  <h3 class="lr-s2">Perceivable</h3>
   <div class="tbl-wrap"><table>
     <caption class="visually-hidden">Selected Perceivable success criteria</caption>
     <thead><tr><th scope="col">Criterion</th><th scope="col">Level</th><th scope="col">What it means in practice</th></tr></thead>
@@ -361,7 +152,7 @@
     </tbody>
   </table></div>
 
-  <h3 style="margin:22px 0 10px">Operable</h3>
+  <h3 class="lr-s3">Operable</h3>
   <div class="tbl-wrap"><table>
     <caption class="visually-hidden">Selected Operable success criteria</caption>
     <thead><tr><th scope="col">Criterion</th><th scope="col">Level</th><th scope="col">What it means in practice</th></tr></thead>
@@ -375,7 +166,7 @@
     </tbody>
   </table></div>
 
-  <h3 style="margin:22px 0 10px">Understandable</h3>
+  <h3 class="lr-s3">Understandable</h3>
   <div class="tbl-wrap"><table>
     <caption class="visually-hidden">Selected Understandable success criteria</caption>
     <thead><tr><th scope="col">Criterion</th><th scope="col">Level</th><th scope="col">What it means in practice</th></tr></thead>
@@ -388,7 +179,7 @@
     </tbody>
   </table></div>
 
-  <h3 style="margin:22px 0 10px">Robust</h3>
+  <h3 class="lr-s3">Robust</h3>
   <div class="tbl-wrap"><table>
     <caption class="visually-hidden">Selected Robust success criteria</caption>
     <thead><tr><th scope="col">Criterion</th><th scope="col">Level</th><th scope="col">What it means in practice</th></tr></thead>
@@ -405,21 +196,21 @@
   <div class="sec-head"><span class="eyebrow">Interactive · signature tool</span><h2>Accessibility self-audit</h2>
     <p class="lead">Check every practice your course materials already meet. This produces a live coverage estimate across the POUR principles — a quick heuristic to prioritize fixes, not a substitute for testing with real assistive technology and users.</p></div>
   <div class="checklist" id="checklist" role="group" aria-label="Accessibility self-audit checklist">
-    <div class="ck" data-w="11" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Meaningful alt text on images (P)</b><span>Every informative image has a concise text alternative; decorative images are marked empty so screen readers skip them.</span></div></div>
-    <div class="ck" data-w="11" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Proper heading structure (P·U)</b><span>One H1, then nested H2/H3 in logical order — real headings, not just bold, big text.</span></div></div>
-    <div class="ck" data-w="11" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Sufficient color contrast (P)</b><span>Body text meets at least 4.5:1 against its background; large text meets 3:1 (WCAG AA).</span></div></div>
-    <div class="ck" data-w="10" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Captions &amp; transcripts for media (P)</b><span>Videos have accurate synchronized captions; audio has a transcript. Auto-captions are corrected, not trusted as-is.</span></div></div>
-    <div class="ck" data-w="11" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Full keyboard operability (O)</b><span>Every control works with Tab/Enter/Space and arrow keys, with a visible focus indicator and no keyboard traps.</span></div></div>
-    <div class="ck" data-w="9" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Descriptive link text (O·U)</b><span>Links make sense out of context — "download the syllabus (PDF)" rather than "click here" or a bare URL.</span></div></div>
-    <div class="ck" data-w="9" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Logical reading order (P·U)</b><span>Content follows a sensible sequence in the underlying markup, matching the visual order screen readers rely on.</span></div></div>
-    <div class="ck" data-w="9" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Data tables with header cells (P·R)</b><span>Real column/row headers (th with scope) so screen-reader users can navigate cells in context — tables aren't used for layout.</span></div></div>
-    <div class="ck" data-w="10" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Form controls with labels (U·R)</b><span>Every field has a programmatically associated label; errors are identified in text and instructions are provided.</span></div></div>
-    <div class="ck" data-w="9" role="checkbox" tabindex="0" aria-checked="false"><div class="box" aria-hidden="true"></div><div class="t"><b>Color is never the only cue (P)</b><span>Meaning conveyed by color is also conveyed by text, icon, or pattern — for required fields, chart series, and status.</span></div></div>
+    <label class="ck" data-w="11"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Meaningful alt text on images (P)</b><span>Every informative image has a concise text alternative; decorative images are marked empty so screen readers skip them.</span></span></label>
+    <label class="ck" data-w="11"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Proper heading structure (P·U)</b><span>One H1, then nested H2/H3 in logical order — real headings, not just bold, big text.</span></span></label>
+    <label class="ck" data-w="11"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Sufficient color contrast (P)</b><span>Body text meets at least 4.5:1 against its background; large text meets 3:1 (WCAG AA).</span></span></label>
+    <label class="ck" data-w="10"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Captions &amp; transcripts for media (P)</b><span>Videos have accurate synchronized captions; audio has a transcript. Auto-captions are corrected, not trusted as-is.</span></span></label>
+    <label class="ck" data-w="11"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Full keyboard operability (O)</b><span>Every control works with Tab/Enter/Space and arrow keys, with a visible focus indicator and no keyboard traps.</span></span></label>
+    <label class="ck" data-w="9"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Descriptive link text (O·U)</b><span>Links make sense out of context — "download the syllabus (PDF)" rather than "click here" or a bare URL.</span></span></label>
+    <label class="ck" data-w="9"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Logical reading order (P·U)</b><span>Content follows a sensible sequence in the underlying markup, matching the visual order screen readers rely on.</span></span></label>
+    <label class="ck" data-w="9"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Data tables with header cells (P·R)</b><span>Real column/row headers (th with scope) so screen-reader users can navigate cells in context — tables aren't used for layout.</span></span></label>
+    <label class="ck" data-w="10"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Form controls with labels (U·R)</b><span>Every field has a programmatically associated label; errors are identified in text and instructions are provided.</span></span></label>
+    <label class="ck" data-w="9"><input type="checkbox" class="ck-input"><span class="box" aria-hidden="true"></span><span class="t"><b>Color is never the only cue (P)</b><span>Meaning conveyed by color is also conveyed by text, icon, or pattern — for required fields, chart series, and status.</span></span></label>
   </div>
   <div class="score" role="status" aria-live="polite">
     <div class="kv">Estimated accessibility coverage</div>
     <div class="meter"><div class="fill" id="auditFill"></div></div>
-    <div class="verdict" id="auditVerdict" style="color:var(--muted)">Check the practices your materials already meet</div>
+    <div class="verdict lr-s4" id="auditVerdict">Check the practices your materials already meet</div>
   </div>
 </div></section>
 
@@ -428,38 +219,38 @@
   <div class="sec-head"><span class="eyebrow">Interactive · signature tool</span><h2>Color contrast checker</h2>
     <p class="lead">Enter a foreground (text) and background color as hex values. This computes the exact WCAG contrast ratio from each color's relative luminance and reports pass or fail against the AA and AAA thresholds — the same math a formal audit uses.</p></div>
   <div class="selector">
-    <div class="grid g2" style="align-items:start">
+    <div class="grid g2 lr-s5">
       <div>
         <div class="q">
           <label class="field-label" for="fgHex">Foreground / text color (hex)</label>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <div class="lr-s6">
             <input type="color" class="color-input" id="fgColor" value="#14213d" aria-label="Foreground color picker">
             <input type="text" class="hex-input" id="fgHex" value="#14213d" inputmode="text" autocomplete="off" spellcheck="false" aria-describedby="contrastResult">
           </div>
         </div>
         <div class="q">
           <label class="field-label" for="bgHex">Background color (hex)</label>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <div class="lr-s6">
             <input type="color" class="color-input" id="bgColor" value="#ffffff" aria-label="Background color picker">
             <input type="text" class="hex-input" id="bgHex" value="#ffffff" inputmode="text" autocomplete="off" spellcheck="false" aria-describedby="contrastResult">
           </div>
         </div>
-        <div id="swatch" class="swatch" style="background:#ffffff;color:#14213d">
-          <div style="font-size:1.35rem;font-weight:800;margin-bottom:4px">Large preview text</div>
-          <div style="font-size:.95rem">Normal body text sample — the quick brown fox jumps over the lazy dog.</div>
+        <div id="swatch" class="swatch lr-s7">
+          <div class="lr-s8">Large preview text</div>
+          <div class="lr-s9">Normal body text sample — the quick brown fox jumps over the lazy dog.</div>
         </div>
       </div>
-      <div class="result show" id="contrastResult" role="status" aria-live="polite" style="margin-top:0">
+      <div class="result show lr-s10" id="contrastResult" role="status" aria-live="polite">
         <div class="kv">Contrast ratio</div>
         <div class="big" id="ratioOut">—</div>
-        <ul class="facts" style="margin-top:8px">
+        <ul class="facts lr-s11">
           <li><span>AA · normal text</span><span id="aaNormal">—</span></li>
           <li><span>AA · large text</span><span id="aaLarge">—</span></li>
           <li><span>AAA · normal text</span><span id="aaaNormal">—</span></li>
           <li><span>AAA · large text</span><span id="aaaLarge">—</span></li>
           <li><span>UI / non-text (3:1)</span><span id="uiPass">—</span></li>
         </ul>
-        <p class="kv" style="margin-top:10px">Thresholds: AA needs <b>4.5:1</b> for normal text and <b>3:1</b> for large text (≈24px, or 18.66px bold); AAA needs <b>7:1</b> and <b>4.5:1</b>. UI components and graphics need <b>3:1</b>.</p>
+        <p class="kv lr-s12">Thresholds: AA needs <b>4.5:1</b> for normal text and <b>3:1</b> for large text (≈24px, or 18.66px bold); AAA needs <b>7:1</b> and <b>4.5:1</b>. UI components and graphics need <b>3:1</b>.</p>
       </div>
     </div>
   </div>
@@ -481,7 +272,7 @@
       <p class="kv">Learners differ in how they navigate and demonstrate what they know. Offer varied ways to act and express.</p>
       <ul><li>Let students show learning multiple ways</li><li>Support planning and strategy use</li><li>Vary tools and assistive technologies</li><li>Scaffold goal-setting and progress</li></ul></div>
   </div>
-  <div class="grid g2" style="margin-top:18px">
+  <div class="grid g2 lr-s1">
     <div class="card"><h3>UDL vs. accommodation — proactive vs. reactive</h3>
       <div class="tbl-wrap"><table>
         <caption class="visually-hidden">Comparison of Universal Design for Learning and individual accommodation</caption>
@@ -505,32 +296,32 @@
   <div class="grid g3">
 
     <div class="card"><span class="tag">Engagement · the "why"</span><h3>Multiple means of Engagement</h3>
-      <p class="kv" style="margin-bottom:12px">Options that recruit interest and sustain the will to learn — the affective networks of the brain.</p>
-      <div style="border-top:1px solid var(--line);padding-top:10px"><b style="color:var(--accent3);font-size:.9rem">Recruiting interest</b>
+      <p class="kv lr-s13">Options that recruit interest and sustain the will to learn — the affective networks of the brain.</p>
+      <div class="lr-s14"><b class="lr-s15">Recruiting interest</b>
         <ul><li>Optimize individual choice and autonomy</li><li>Optimize relevance, value, and authenticity</li><li>Nurture joy and play; address bias and threat</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Sustaining effort &amp; persistence</b>
+      <div class="lr-s16"><b class="lr-s15">Sustaining effort &amp; persistence</b>
         <ul><li>Heighten salience of goals and objectives</li><li>Vary demands and resources to optimize challenge</li><li>Foster collaboration, community, and belonging</li><li>Offer action-oriented, mastery feedback</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Emotional capacity (self-regulation)</b>
+      <div class="lr-s16"><b class="lr-s15">Emotional capacity (self-regulation)</b>
         <ul><li>Promote expectations and beliefs that motivate</li><li>Develop coping skills and strategies</li><li>Support self-reflection and assessment</li></ul></div>
     </div>
 
     <div class="card"><span class="tag">Representation · the "what"</span><h3>Multiple means of Representation</h3>
-      <p class="kv" style="margin-bottom:12px">Options for perceiving and comprehending information — the recognition networks of the brain.</p>
-      <div style="border-top:1px solid var(--line);padding-top:10px"><b style="color:var(--accent3);font-size:.9rem">Perception</b>
+      <p class="kv lr-s13">Options for perceiving and comprehending information — the recognition networks of the brain.</p>
+      <div class="lr-s14"><b class="lr-s15">Perception</b>
         <ul><li>Support opportunities to customize display</li><li>Offer alternatives for auditory information</li><li>Offer alternatives for visual information</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Language &amp; symbols</b>
+      <div class="lr-s16"><b class="lr-s15">Language &amp; symbols</b>
         <ul><li>Clarify vocabulary, symbols, and structures</li><li>Support decoding of text and notation</li><li>Cultivate multiple languages and dialects</li><li>Illustrate through multiple media</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Building knowledge (comprehension)</b>
+      <div class="lr-s16"><b class="lr-s15">Building knowledge (comprehension)</b>
         <ul><li>Connect prior knowledge to new learning</li><li>Highlight patterns, big ideas, and relationships</li><li>Guide information processing</li><li>Maximize transfer and generalization</li></ul></div>
     </div>
 
     <div class="card"><span class="tag">Action &amp; Expression · the "how"</span><h3>Multiple means of Action &amp; Expression</h3>
-      <p class="kv" style="margin-bottom:12px">Options for strategic action and expressing what one knows — the strategic networks of the brain.</p>
-      <div style="border-top:1px solid var(--line);padding-top:10px"><b style="color:var(--accent3);font-size:.9rem">Physical action</b>
+      <p class="kv lr-s13">Options for strategic action and expressing what one knows — the strategic networks of the brain.</p>
+      <div class="lr-s14"><b class="lr-s15">Physical action</b>
         <ul><li>Vary methods for response and navigation</li><li>Optimize access to tools and assistive technologies</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Expression &amp; communication</b>
+      <div class="lr-s16"><b class="lr-s15">Expression &amp; communication</b>
         <ul><li>Use multiple media for communication</li><li>Use multiple tools for construction and composition</li><li>Build fluencies with graduated support and practice</li></ul></div>
-      <div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px"><b style="color:var(--accent3);font-size:.9rem">Strategy development (executive function)</b>
+      <div class="lr-s16"><b class="lr-s15">Strategy development (executive function)</b>
         <ul><li>Guide appropriate goal-setting</li><li>Support planning and strategy development</li><li>Facilitate managing information and resources</li><li>Enhance capacity for monitoring progress</li></ul></div>
     </div>
 
@@ -600,7 +391,7 @@
       <p class="kv">Diagrams, maps, and process figures need a brief alt text plus a longer description nearby — in a caption, adjacent text, or a linked full description — that conveys the same information a sighted reader gets.</p>
       <ul><li>Short alt names the image and its purpose</li><li>Longer prose explains the detail</li><li>Put the description in real body text</li><li>Decorative images get empty alt</li></ul></div>
   </div>
-  <div class="grid g2" style="margin-top:18px">
+  <div class="grid g2 lr-s1">
     <div class="card"><h3>Data tables that assistive tech can read</h3>
       <p class="kv">Use real table markup with header cells (<code>&lt;th&gt;</code> and a <code>scope</code>), a caption, and a simple rectangular layout. Screen readers then announce the relevant row and column headers as the user moves between cells, so a number never floats free of its meaning. Avoid merged cells, split tables, and using tables purely for visual layout.</p></div>
     <div class="card"><h3>The picture-of-text trap</h3>
@@ -622,7 +413,7 @@
     <div class="card hoverable"><span class="tag">Accessible player</span><h3>Operable controls</h3>
       <p class="kv">Keyboard-operable play, pause, volume, and caption controls with visible focus; a player that exposes captions and doesn't autoplay with sound.</p></div>
   </div>
-  <div class="grid g2" style="margin-top:18px">
+  <div class="grid g2 lr-s1">
     <div class="card"><h3>Auto-captions are a draft, not a deliverable</h3>
       <p class="kv">Automatic speech recognition misses punctuation, technical terms, names, and speaker changes, and struggles with accents and background noise — the errors it produces are sometimes called "craptions." Always review and correct auto-captions before you consider a video accessible.</p></div>
     <div class="card"><h3>Captions vs. subtitles</h3>
@@ -642,7 +433,7 @@
       <p class="kv">A <b>Voluntary Product Accessibility Template</b> is the industry form a vendor completes to describe how a product meets accessibility standards; the filled-in result is an <b>Accessibility Conformance Report (ACR)</b>. Editions map to WCAG 2.x, Section 508, and the EU EN 301 549.</p>
       <ul><li>Each criterion marked Supports / Partially / Does Not</li><li>"Remarks and Explanations" hold the real detail</li><li>Request the ACR before you buy, not after</li><li>Treat vague or empty VPATs as a red flag</li></ul></div>
   </div>
-  <div class="grid g3" style="margin-top:18px">
+  <div class="grid g3 lr-s1">
     <div class="card"><h3>Conformance levels in a VPAT</h3>
       <p class="kv"><b>Supports</b> — meets the criterion. <b>Partially Supports</b> — some functionality does not. <b>Does Not Support</b> — the majority is not met. <b>Not Applicable</b> — the criterion does not apply to the product.</p></div>
     <div class="card"><h3>Procurement basics</h3>
@@ -672,22 +463,22 @@
 <section id="glossary"><div class="wrap">
   <div class="sec-head"><span class="eyebrow">Reference</span><h2>Glossary &amp; further reading</h2></div>
   <div class="grid g2">
-    <div class="card"><ul style="list-style:none;padding:0;margin:0">
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Assistive technology (AT)</b> — tools such as screen readers, magnifiers, and switch devices that people use to access content.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Alt text</b> — a concise text alternative for an image, read by screen readers and shown when images fail to load.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">ARIA</b> — Accessible Rich Internet Applications; markup that supplies name, role, and value where native HTML falls short.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Conformance level</b> — WCAG grades A, AA, and AAA marking how fully criteria are met.</li>
-      <li style="padding:9px 0"><b style="color:var(--ink)">Contrast ratio</b> — the luminance difference between text and background; AA requires 4.5:1 for normal text.</li>
+    <div class="card"><ul class="lr-s17">
+      <li class="lr-s18"><b class="lr-s19">Assistive technology (AT)</b> — tools such as screen readers, magnifiers, and switch devices that people use to access content.</li>
+      <li class="lr-s18"><b class="lr-s19">Alt text</b> — a concise text alternative for an image, read by screen readers and shown when images fail to load.</li>
+      <li class="lr-s18"><b class="lr-s19">ARIA</b> — Accessible Rich Internet Applications; markup that supplies name, role, and value where native HTML falls short.</li>
+      <li class="lr-s18"><b class="lr-s19">Conformance level</b> — WCAG grades A, AA, and AAA marking how fully criteria are met.</li>
+      <li class="lr-s20"><b class="lr-s19">Contrast ratio</b> — the luminance difference between text and background; AA requires 4.5:1 for normal text.</li>
     </ul></div>
-    <div class="card"><ul style="list-style:none;padding:0;margin:0">
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">POUR</b> — WCAG's four principles: Perceivable, Operable, Understandable, Robust.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Remediation</b> — retrofitting existing content to remove accessibility barriers.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Screen reader</b> — software (JAWS, NVDA, VoiceOver) that renders on-screen content as speech or braille.</li>
-      <li style="padding:9px 0;border-bottom:1px solid var(--line)"><b style="color:var(--ink)">Semantic markup</b> — using HTML elements for their meaning (headings, lists, tables) so structure is machine-readable.</li>
-      <li style="padding:9px 0"><b style="color:var(--ink)">UDL</b> — Universal Design for Learning; CAST's framework of Engagement, Representation, and Action &amp; Expression.</li>
+    <div class="card"><ul class="lr-s17">
+      <li class="lr-s18"><b class="lr-s19">POUR</b> — WCAG's four principles: Perceivable, Operable, Understandable, Robust.</li>
+      <li class="lr-s18"><b class="lr-s19">Remediation</b> — retrofitting existing content to remove accessibility barriers.</li>
+      <li class="lr-s18"><b class="lr-s19">Screen reader</b> — software (JAWS, NVDA, VoiceOver) that renders on-screen content as speech or braille.</li>
+      <li class="lr-s18"><b class="lr-s19">Semantic markup</b> — using HTML elements for their meaning (headings, lists, tables) so structure is machine-readable.</li>
+      <li class="lr-s20"><b class="lr-s19">UDL</b> — Universal Design for Learning; CAST's framework of Engagement, Representation, and Action &amp; Expression.</li>
     </ul></div>
   </div>
-  <div class="card" style="margin-top:18px"><h3>Frameworks &amp; references</h3>
+  <div class="card lr-s1"><h3>Frameworks &amp; references</h3>
     <div class="scholars">
       <span class="chip">W3C WAI — <em>Web Content Accessibility Guidelines (WCAG) 2.2</em></span>
       <span class="chip">CAST — <em>UDL Guidelines (Version 3.0)</em></span>
@@ -706,7 +497,7 @@
       <span class="chip">CAST — <em>UDL Guidelines checkpoints &amp; research evidence</em></span>
       <span class="chip">Burgstahler — <em>DO-IT, University of Washington</em></span>
     </div>
-    <p class="kv" style="margin-top:14px">This is an independent open educational resource. Framework and standard names are cited for reference only; no affiliation with or endorsement by the W3C, CAST, or any agency is implied.</p></div>
+    <p class="kv lr-s21">This is an independent open educational resource. Framework and standard names are cited for reference only; no affiliation with or endorsement by the W3C, CAST, or any agency is implied.</p></div>
 </div></section>
 
 </main>
@@ -716,165 +507,13 @@
   <div class="foot-title">Accessibility &amp; UDL Toolkit for Educators</div>
   <nav class="foot-links" aria-label="Footer">
     <a href="https://fredlogan.phd">fredlogan.phd</a> &middot;
-    <a href="../resources/">Resource hub</a> &middot;
+    <a href="https://freddricklogan.github.io/resources/">Resource hub</a> &middot;
     <a href="https://github.com/Freddricklogan">GitHub</a> &middot;
     <a href="https://www.linkedin.com/in/freddricklogan/">LinkedIn</a>
   </nav>
   <div class="copyright">&copy; 2026 Freddrick Logan &mdash; Technologist &amp; Education. All rights reserved.</div>
 </div></footer>
 
-<script>
-// ---- Accessibility self-audit scorer ----
-var cks = document.querySelectorAll('#checklist .ck');
-function scoreAudit(){
-  var s = 0;
-  cks.forEach(function(c){ if(c.classList.contains('on')) s += parseInt(c.dataset.w, 10); });
-  s = Math.min(100, s);
-  document.getElementById('auditFill').style.width = s + '%';
-  var v = document.getElementById('auditVerdict');
-  if(s === 0){ v.textContent = 'Check the practices your materials already meet'; v.style.color = 'var(--muted)'; }
-  else if(s < 40){ v.textContent = s + '% — Emerging: start with headings, alt text & link text'; v.style.color = 'var(--bad)'; }
-  else if(s < 75){ v.textContent = s + '% — Developing: add captions, contrast & keyboard checks'; v.style.color = 'var(--warn)'; }
-  else if(s < 100){ v.textContent = s + '% — Strong: close the remaining gaps, then test with real AT'; v.style.color = 'var(--good)'; }
-  else { v.textContent = '100% — Comprehensive coverage; verify with real users & assistive tech'; v.style.color = 'var(--good)'; }
-}
-function toggleCk(c){
-  var on = c.classList.toggle('on');
-  c.setAttribute('aria-checked', on ? 'true' : 'false');
-  scoreAudit();
-}
-cks.forEach(function(c){
-  c.addEventListener('click', function(){ toggleCk(c); });
-  c.addEventListener('keydown', function(e){
-    if(e.key === ' ' || e.key === 'Enter' || e.key === 'Spacebar'){
-      e.preventDefault();
-      toggleCk(c);
-    }
-  });
-});
-scoreAudit();
-
-// ---- Color contrast checker ----
-// Parse a #rgb or #rrggbb hex string into [r,g,b] (0-255), or null if invalid.
-function parseHex(str){
-  if(typeof str !== 'string') return null;
-  var h = str.trim().replace(/^#/, '');
-  if(/^[0-9a-fA-F]{3}$/.test(h)){
-    h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
-  }
-  if(!/^[0-9a-fA-F]{6}$/.test(h)) return null;
-  return [
-    parseInt(h.slice(0,2),16),
-    parseInt(h.slice(2,4),16),
-    parseInt(h.slice(4,6),16)
-  ];
-}
-// WCAG relative luminance from an [r,g,b] triple (0-255).
-function relLuminance(rgb){
-  var lin = rgb.map(function(v){
-    var s = v/255;
-    return s <= 0.03928 ? s/12.92 : Math.pow((s+0.055)/1.055, 2.4);
-  });
-  return 0.2126*lin[0] + 0.7152*lin[1] + 0.0722*lin[2];
-}
-// WCAG contrast ratio between two [r,g,b] triples.
-function contrastRatio(rgb1, rgb2){
-  var l1 = relLuminance(rgb1), l2 = relLuminance(rgb2);
-  var lighter = Math.max(l1, l2), darker = Math.min(l1, l2);
-  return (lighter + 0.05) / (darker + 0.05);
-}
-function normalizeHex(str){
-  var rgb = parseHex(str);
-  if(!rgb) return null;
-  return '#' + rgb.map(function(v){ return ('0'+v.toString(16)).slice(-2); }).join('');
-}
-var fgHex = document.getElementById('fgHex'),
-    bgHex = document.getElementById('bgHex'),
-    fgColor = document.getElementById('fgColor'),
-    bgColor = document.getElementById('bgColor');
-function markPass(el, ok){
-  el.textContent = ok ? '✓ Pass' : '✗ Fail';
-  el.style.color = ok ? 'var(--good)' : 'var(--bad)';
-  el.style.fontWeight = '700';
-}
-function updateContrast(){
-  var fg = parseHex(fgHex.value), bg = parseHex(bgHex.value);
-  var out = document.getElementById('ratioOut');
-  var sw = document.getElementById('swatch');
-  if(!fg || !bg){
-    out.textContent = 'Enter valid hex colors';
-    out.style.color = 'var(--warn)';
-    ['aaNormal','aaLarge','aaaNormal','aaaLarge','uiPass'].forEach(function(id){
-      var e = document.getElementById(id); e.textContent = '—'; e.style.color = 'var(--muted)';
-    });
-    return;
-  }
-  var ratio = contrastRatio(fg, bg);
-  var rounded = Math.round(ratio * 100) / 100;
-  out.textContent = rounded.toFixed(2) + ':1';
-  out.style.color = 'var(--accent2)';
-  markPass(document.getElementById('aaNormal'),  ratio >= 4.5);
-  markPass(document.getElementById('aaLarge'),   ratio >= 3);
-  markPass(document.getElementById('aaaNormal'), ratio >= 7);
-  markPass(document.getElementById('aaaLarge'),  ratio >= 4.5);
-  markPass(document.getElementById('uiPass'),    ratio >= 3);
-  var fgN = normalizeHex(fgHex.value), bgN = normalizeHex(bgHex.value);
-  sw.style.color = fgN;
-  sw.style.background = bgN;
-}
-function syncFromText(textEl, colorEl){
-  var n = normalizeHex(textEl.value);
-  if(n) colorEl.value = n;
-  updateContrast();
-}
-function syncFromPicker(colorEl, textEl){
-  textEl.value = colorEl.value;
-  updateContrast();
-}
-if(fgHex && bgHex){
-  fgHex.addEventListener('input', function(){ syncFromText(fgHex, fgColor); });
-  bgHex.addEventListener('input', function(){ syncFromText(bgHex, bgColor); });
-  fgColor.addEventListener('input', function(){ syncFromPicker(fgColor, fgHex); });
-  bgColor.addEventListener('input', function(){ syncFromPicker(bgColor, bgHex); });
-  updateContrast();
-}
-</script>
-<script>
-(function(){
-  if(document.querySelector('.sec-head.sect-toggle')) return;
-  var firstCollapsible=null;
-  [].slice.call(document.querySelectorAll('section')).forEach(function(sec){
-    var wrap=sec.querySelector('.wrap'); if(!wrap) return;
-    var head=wrap.querySelector('.sec-head'); if(!head) return;
-    if(wrap.querySelector('.memo-head')||wrap.querySelector('.exec-summary')) return;
-    var body=document.createElement('div'); body.className='sect-body';
-    var n=head.nextSibling;
-    while(n){ var nx=n.nextSibling; body.appendChild(n); n=nx; }
-    wrap.appendChild(body);
-    head.classList.add('sect-toggle');
-    head.setAttribute('role','button'); head.setAttribute('tabindex','0'); head.setAttribute('aria-expanded','false');
-    sec.classList.add('collapsed');
-    if(!firstCollapsible) firstCollapsible=sec;
-    function set(open){ sec.classList[open?'remove':'add']('collapsed'); head.setAttribute('aria-expanded',open?'true':'false'); }
-    head.addEventListener('click',function(){ set(sec.classList.contains('collapsed')); });
-    head.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); set(sec.classList.contains('collapsed')); } });
-  });
-  function openHash(){ var id=decodeURIComponent((location.hash||'').slice(1)); if(!id) return; var el=document.getElementById(id); if(!el) return; var s=el.closest?el.closest('section'):null; if(s&&s.classList.contains('collapsed')){ s.classList.remove('collapsed'); var h=s.querySelector('.sec-head.sect-toggle'); if(h)h.setAttribute('aria-expanded','true'); } setTimeout(function(){ try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){el.scrollIntoView();} },40); }
-  window.addEventListener('hashchange',openHash);
-  if(firstCollapsible){
-    var bar=document.createElement('div'); bar.className='expand-bar';
-    var btn=document.createElement('button'); btn.type='button'; btn.textContent='Expand all sections'; btn.setAttribute('aria-expanded','false');
-    var expanded=false;
-    btn.addEventListener('click',function(){
-      expanded=!expanded;
-      document.querySelectorAll('section').forEach(function(s){ var h=s.querySelector('.sec-head.sect-toggle'); if(!h) return; s.classList[expanded?'remove':'add']('collapsed'); h.setAttribute('aria-expanded',expanded?'true':'false'); });
-      btn.textContent=expanded?'Collapse all sections':'Expand all sections'; btn.setAttribute('aria-expanded',expanded?'true':'false');
-    });
-    bar.appendChild(btn);
-    firstCollapsible.parentNode.insertBefore(bar, firstCollapsible);
-  }
-  openHash();
-})();
-</script>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>

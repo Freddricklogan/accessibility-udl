@@ -1,0 +1,57 @@
+{
+  "title": "Accessibility & UDL Toolkit for Educators",
+  "subtitle": "a graduate-level guide to accessible teaching from the legal case to a remediation roadmap, with a self-audit scorer and a WCAG contrast checker",
+  "problem": "Faculty and instructional designers receive an accommodation letter, a complaint, or a procurement form and discover that their syllabus is a scanned PDF, their slides have no headings, their videos have auto-captions nobody checked, and their equations are pictures. The standard exists — WCAG, UDL, Section 508 — but it reaches them as a checklist of 87 criteria rather than a small number of habits and two tools they can use today.",
+  "solution": "A fourteen-section resource that opens with the legal and ethical case, explains WCAG through the POUR principles and a plain-language selection of success criteria, sets out CAST's UDL framework and full guidelines, shows how assistive technologies actually reach content, and turns the standard into practice for documents, STEM material and video, with accessibility statements and VPATs for procurement and a priority-ordered roadmap for an existing course — anchored by a self-audit scorer across POUR and a contrast checker that computes the exact WCAG ratio from relative luminance.",
+  "pedagogy": "practice over compliance: the audit reads as habits, not criteria numbers; the contrast checker shows the same arithmetic a formal audit uses so the threshold stops being a mystery; the page practises what it teaches — native checkboxes, real headings, a main landmark and a strict policy — and the conversion audit records the fixes.",
+  "section_titles": [
+    "why accessibility",
+    "WCAG and POUR",
+    "success criteria",
+    "self-audit",
+    "contrast checker",
+    "the UDL framework",
+    "full UDL guidelines",
+    "assistive technologies",
+    "accessible documents",
+    "STEM, data and images",
+    "video and audio",
+    "statements and the VPAT",
+    "roadmap",
+    "glossary"
+  ],
+  "widgets": [
+    {
+      "name": "Accessibility self-audit",
+      "what": "Ten weighted practices across POUR as native checkboxes; fills a bar and gives an Emerging / Developing / Strong / Comprehensive verdict with the next fixes named"
+    },
+    {
+      "name": "Colour contrast checker",
+      "what": "Foreground and background hex inputs; computes the WCAG ratio from relative luminance and reports pass or fail for AA and AAA normal and large text and for UI components"
+    }
+  ],
+  "quiz_topics": [
+    "the POUR principles",
+    "AA contrast thresholds",
+    "UDL's three principles",
+    "accessible mathematics",
+    "statements versus VPATs"
+  ],
+  "tour": [
+    "the first section opens and the count rises.",
+    "POUR, contrast thresholds, UDL, MathML and procurement documents"
+  ],
+  "repo": "accessibility-udl",
+  "tests": 7,
+  "cov_all": 79.84,
+  "cov_kit": 78.75,
+  "vars": 26,
+  "inline_styles": 65,
+  "style_classes": 21,
+  "buttons": 0,
+  "tables": 0,
+  "main_note": "kept the existing `<main>` landmark",
+  "sections": 14,
+  "words": 3782,
+  "reading_min": 17
+}
