@@ -3,6 +3,7 @@ export const config = {
   title: 'Accessibility & UDL Toolkit for Educators',
   tagline: 'A graduate-level guide to accessible teaching: the legal case, WCAG 2.2 and the POUR principles, success criteria in plain language, CAST’s UDL 3.0 guidelines, assistive technologies, accessible documents, STEM content and video, accessibility statements and VPATs, and a remediation roadmap, with a self-audit scorer and a WCAG contrast checker.',
   repo: 'https://github.com/Freddricklogan/accessibility-udl',
+  theme: 'plum',
   pagesUrl: 'https://freddricklogan.github.io/accessibility-udl/',
   quizTitle: 'Five questions on accessibility and UDL',
   quiz: [
