@@ -1,7 +1,7 @@
 # Accessibility & UDL Toolkit for Educators: a graduate-level guide to accessible teaching from the legal case to a remediation roadmap, with a self-audit scorer and a WCAG contrast checker
 
 [![CI/CD](https://github.com/Freddricklogan/accessibility-udl/actions/workflows/deploy.yml/badge.svg)](https://github.com/Freddricklogan/accessibility-udl/actions/workflows/deploy.yml)
-[![Coverage](https://img.shields.io/badge/coverage-79.84%25-green)](#5-getting-started--verification)
+[![Coverage](https://img.shields.io/badge/coverage-79.55%25-green)](#5-getting-started--verification)
 [![Security (CodeQL)](https://github.com/Freddricklogan/accessibility-udl/actions/workflows/codeql.yml/badge.svg)](https://github.com/Freddricklogan/accessibility-udl/actions/workflows/codeql.yml)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/live%20resource-online-brightgreen)](https://freddricklogan.github.io/accessibility-udl/)
@@ -130,13 +130,13 @@ npx serve .       # open http://localhost:3000
 ```bash
 npm run lint      # 0 problems
 npm run validate  # html-validate index.html: clean
-npm run coverage  # 7 passed; All files 79.84% (config.js 100%, vendored lr-kit.js 78.75%)
+npm run coverage  # 14 passed; All files 79.55% (config.js 100%, vendored lr-kit.js 78.54%)
 ```
 
 | Check | Result |
 | --- | --- |
 | Unit tests (Vitest, jsdom) | **7 passed / 7** across 2 files — quiz validity, page invariants, the kit mounted on this page |
-| Coverage | All files **79.84%** statements: `src/config.js` 100%, vendored `src/lr-kit.js` 78.75% from this page's smoke test (the kit's own suite covers it at 99%) |
+| Coverage | All files **79.55%** statements: `src/config.js` 100%, vendored `src/lr-kit.js` 78.54% from this page's smoke test (the kit's own suite covers it at 99%) |
 | ESLint, html-validate | clean |
 | Conversion audit | 65 inline styles → 21 classes · 26 tokens namespaced · 0 buttons typed · 0 tables fixed |
 | Headless Chrome smoke | **0 console errors**; all 2 widgets exercised; sections opened 14/14 on Expand all; no horizontal scroll at 1200 or 400 px |
